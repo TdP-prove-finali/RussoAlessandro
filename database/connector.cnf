@@ -1,0 +1,6 @@
+[client]
+user=root
+password=1234
+host=127.0.0.1
+database=f1_logistics_db
+raise_on_warnings=True
