@@ -59,6 +59,7 @@ CREATE TABLE `components` (
   `component_id` int(11) NOT NULL AUTO_INCREMENT,
   `package_size` varchar(20) NOT NULL,
   `focus` varchar(20) NOT NULL,
+  `base_gain_s` float NOT NULL DEFAULT 0 COMMENT 'Guadagno cronometrico nominale in secondi al giro, in condizioni ideali',
   `cost_mln` decimal(5,2) NOT NULL,
   `base_lead_time_days` int(11) NOT NULL,
   PRIMARY KEY (`component_id`)
@@ -71,7 +72,7 @@ CREATE TABLE `components` (
 
 LOCK TABLES `components` WRITE;
 /*!40000 ALTER TABLE `components` DISABLE KEYS */;
-INSERT INTO `components` VALUES (1,'Minor','Aero',0.50,14),(2,'Minor','Chassis',0.50,14),(3,'Minor','Power',0.50,14),(4,'Medium','Aero',3.00,35),(5,'Medium','Chassis',3.00,35),(6,'Medium','Power',3.00,35),(7,'Major','Aero',12.00,70),(8,'Major','Chassis',12.00,70),(9,'Major','Power',12.00,70);
+INSERT INTO `components` VALUES (1,'Minor','Aero',0.05,0.50,14),(2,'Minor','Chassis',0.05,0.50,14),(3,'Minor','Power',0.05,0.50,14),(4,'Medium','Aero',0.12,1.20,35),(5,'Medium','Chassis',0.12,1.20,35),(6,'Medium','Power',0.12,1.20,35),(7,'Major','Aero',0.3,3.00,70),(8,'Major','Chassis',0.3,3.00,70),(9,'Major','Power',0.3,3.00,70);
 /*!40000 ALTER TABLE `components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,4 +122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-18 15:11:19
+-- Dump completed on 2026-09-22 18:18:07
