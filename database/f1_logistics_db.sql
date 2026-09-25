@@ -72,8 +72,40 @@ CREATE TABLE `components` (
 
 LOCK TABLES `components` WRITE;
 /*!40000 ALTER TABLE `components` DISABLE KEYS */;
-INSERT INTO `components` VALUES (1,'Minor','Aero',0.05,0.50,14),(2,'Minor','Chassis',0.05,0.50,14),(3,'Minor','Power',0.05,0.50,14),(4,'Medium','Aero',0.12,1.20,35),(5,'Medium','Chassis',0.12,1.20,35),(6,'Medium','Power',0.12,1.20,35),(7,'Major','Aero',0.3,3.00,70),(8,'Major','Chassis',0.3,3.00,70),(9,'Major','Power',0.3,3.00,70);
+INSERT INTO `components` VALUES (1,'Minor','Aero',0.05,0.60,14),(2,'Minor','Chassis',0.05,0.40,14),(4,'Medium','Aero',0.12,1.20,35),(5,'Medium','Chassis',0.12,1.40,35),(7,'Major','Aero',0.3,2.10,70),(8,'Major','Chassis',0.3,2.10,70);
 /*!40000 ALTER TABLE `components` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `constructors`
+--
+
+DROP TABLE IF EXISTS `constructors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `constructors` (
+  `constructor_id` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `nationality` varchar(50) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `base_city` varchar(60) NOT NULL COMMENT 'custom: sede da cui partono i pezzi nuovi',
+  `base_country` varchar(60) NOT NULL COMMENT 'custom',
+  `base_lat` decimal(8,5) NOT NULL COMMENT 'custom',
+  `base_lng` decimal(8,5) NOT NULL COMMENT 'custom',
+  `first_season` int(11) NOT NULL,
+  `last_season` int(11) DEFAULT NULL COMMENT 'NULL = ancora attiva',
+  PRIMARY KEY (`constructor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `constructors`
+--
+
+LOCK TABLES `constructors` WRITE;
+/*!40000 ALTER TABLE `constructors` DISABLE KEYS */;
+INSERT INTO `constructors` VALUES ('alfa','Alfa Romeo','Swiss','https://en.wikipedia.org/wiki/Alfa_Romeo_in_Formula_One','Hinwil','Switzerland',47.30000,8.84000,2021,2023),('alphatauri','AlphaTauri','Italian','https://en.wikipedia.org/wiki/Scuderia_AlphaTauri','Faenza','Italy',44.29000,11.88000,2021,2023),('alpine','Alpine F1 Team','French','https://en.wikipedia.org/wiki/Alpine_F1_Team','Enstone','UK',51.92000,-1.45000,2021,NULL),('aston_martin','Aston Martin','British','https://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One','Silverstone','UK',52.09000,-1.03000,2021,NULL),('audi','Audi','German','https://en.wikipedia.org/wiki/Audi_in_Formula_One','Hinwil','Switzerland',47.30000,8.84000,2026,NULL),('cadillac','Cadillac F1 Team','American','https://en.wikipedia.org/wiki/Cadillac_in_Formula_One','Silverstone','UK',52.09000,-1.03000,2026,NULL),('ferrari','Ferrari','Italian','https://en.wikipedia.org/wiki/Scuderia_Ferrari','Maranello','Italy',44.53000,10.86000,2021,NULL),('haas','Haas F1 Team','American','https://en.wikipedia.org/wiki/Haas_F1_Team','Maranello','Italy',44.53000,10.86000,2021,NULL),('mclaren','McLaren','British','https://en.wikipedia.org/wiki/McLaren','Woking','UK',51.32000,-0.56000,2021,NULL),('mercedes','Mercedes','German','https://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One','Brackley','UK',52.03000,-1.15000,2021,NULL),('rb','Racing Bulls','Italian','https://en.wikipedia.org/wiki/Racing_Bulls','Faenza','Italy',44.29000,11.88000,2024,NULL),('red_bull','Red Bull','Austrian','https://en.wikipedia.org/wiki/Red_Bull_Racing','Milton Keynes','UK',52.04000,-0.76000,2021,NULL),('sauber','Sauber','Swiss','https://en.wikipedia.org/wiki/Sauber_Motorsport','Hinwil','Switzerland',47.30000,8.84000,2024,2025),('williams','Williams','British','https://en.wikipedia.org/wiki/Williams_Racing','Grove','UK',51.61000,-1.42000,2021,NULL);
+/*!40000 ALTER TABLE `constructors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -122,4 +154,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-25 11:44:03
+-- Dump completed on 2026-09-25 19:36:39
