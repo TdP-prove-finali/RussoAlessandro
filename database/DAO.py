@@ -87,7 +87,12 @@ class DAO():
             cursor.execute(query)
 
             for row in cursor:
-                result.append(Component(**row))
+                result.append(Component(component_id=row["component_id"],
+                                        package_size=row["package_size"],
+                                        focus=row["focus"],
+                                        base_gain_s=row["base_gain_s"],
+                                        cost_mln=float(row["cost_mln"]),
+                                        base_lead_time_days=row["base_lead_time_days"]))
 
             cursor.close()
             cnx.close()
@@ -110,7 +115,16 @@ class DAO():
             cursor.execute(query, (season, season))
 
             for row in cursor:
-                result.append(Constructor(**row))
+                result.append(Constructor(constructor_id=row["constructor_id"],
+                                          name=row["name"],
+                                          nationality=row["nationality"],
+                                          url=row["url"],
+                                          base_city=row["base_city"],
+                                          base_country=row["base_country"],
+                                          base_lat=float(row["base_lat"]),
+                                          base_lng=float(row["base_lng"]),
+                                          first_season=row["first_season"],
+                                          last_season=row["last_season"]))
 
             cursor.close()
             cnx.close()
