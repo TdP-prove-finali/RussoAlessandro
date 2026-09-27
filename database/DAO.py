@@ -129,3 +129,24 @@ class DAO():
             cursor.close()
             cnx.close()
         return result
+
+    @staticmethod
+    def get_routes(constructor_id):
+        cnx = DBConnect.get_connection()
+        result = {}
+        if cnx is None:
+            print("Connection failed")
+        else:
+            cursor = cnx.cursor(dictionary=True)
+            query = """select r.circuit_id, r.transport_mode, r.distance_km, r.travel_hours
+                    from routes r
+                    where r.constructor_id = %s"""
+            cursor.execute(query, (constructor_id,))
+
+            for row in cursor:
+                travel_hours = float(row["travel_hours"]) if row["travel_hours"] is not None else None
+                result[row["circuit_id"]] = (row["transport_mode"], float(row["distance_km"]), travel_hours)
+
+            cursor.close()
+            cnx.close()
+        return result
