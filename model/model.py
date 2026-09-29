@@ -85,10 +85,13 @@ class Model:
         return (1 - alpha * race.rain_prob) * (1 - beta * race.is_sprint)
 
     def get_assignment_value(self, component, race, alpha=constants.DEFAULT_ALPHA, beta=constants.DEFAULT_BETA):
-        following_races = self._races[self._races.index(race) + 1:]
-        debut_benefit = self.get_debut_quality(race, alpha, beta) * self.get_affinity(component, race)
+        index = self._races.index(race)
+        setup_races = self._races[index:index + 2]
+        following_races = self._races[index + 2:]
+        setup_benefit = self.get_debut_quality(race, alpha, beta) * sum(self.get_affinity(component, r)
+                                                                         for r in setup_races)
         following_benefit = sum(self.get_affinity(component, r) for r in following_races)
-        return component.base_gain_s * (debut_benefit + following_benefit)
+        return component.base_gain_s * (setup_benefit + following_benefit)
 
     def load_routes(self, constructor):
         if constructor.constructor_id != self._routes_constructor_id:
