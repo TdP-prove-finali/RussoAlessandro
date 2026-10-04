@@ -72,7 +72,7 @@ CREATE TABLE `components` (
 
 LOCK TABLES `components` WRITE;
 /*!40000 ALTER TABLE `components` DISABLE KEYS */;
-INSERT INTO `components` VALUES (1,'Minor','Aero',0.05,0.60,14),(2,'Minor','Chassis',0.05,0.40,14),(4,'Medium','Aero',0.12,1.20,35),(5,'Medium','Chassis',0.12,1.40,35),(7,'Major','Aero',0.3,2.10,70),(8,'Major','Chassis',0.3,2.10,70);
+INSERT INTO `components` VALUES (1,'Minor','Aero',0.05,0.60,14),(2,'Minor','Chassis',0.05,0.40,14),(3,'Medium','Aero',0.12,1.20,35),(4,'Medium','Chassis',0.12,1.40,35),(5,'Major','Aero',0.3,2.10,70),(6,'Major','Chassis',0.3,2.10,70);
 /*!40000 ALTER TABLE `components` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-27 12:20:40
+-- Dump completed on 2026-10-04 16:52:34
