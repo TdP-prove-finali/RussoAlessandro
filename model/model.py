@@ -1,3 +1,4 @@
+import datetime
 import math
 import time
 
@@ -17,6 +18,9 @@ class Model:
         self._races = []
         self._source = None
         self._components = []
+        self._seasons = []
+        self._season_races = {}
+        self._season_constructors = {}
         self._routes = {}
         self._routes_constructor_id = None
 
@@ -37,16 +41,44 @@ class Model:
         self._best_cost = 0.0
         self._best_net = -math.inf
 
+    def get_seasons(self):
+        if not self._seasons:
+            self._seasons = DAO.get_seasons()
+        return self._seasons
+
+    def get_season_races(self, season):
+        if season not in self._season_races:
+            self._season_races[season] = DAO.get_races(season)
+        return self._season_races[season]
+
+    def get_constructors(self, season):
+        if season not in self._season_constructors:
+            self._season_constructors[season] = DAO.get_constructors(season)
+        return self._season_constructors[season]
+
     def get_positions(self, season):
-        team_count = len(DAO.get_constructors(season))
+        team_count = len(self.get_constructors(season))
         return list(range(1, team_count + 1))
 
+    def get_development_window(self, season):
+        first_date = datetime.date(season - 1, constants.DEVELOPMENT_WINDOW_START_MONTH,
+                                   constants.DEVELOPMENT_WINDOW_START_DAY)
+        last_date = self.get_season_races(season)[-1].date
+        return first_date, last_date
+
+    def get_default_development_start(self, season):
+        return datetime.date(season, constants.DEFAULT_DEVELOPMENT_START_MONTH,
+                             constants.DEFAULT_DEVELOPMENT_START_DAY)
+
     def get_cost_cap(self, season):
-        race_count = len(DAO.get_races(season))
+        race_count = len(self.get_season_races(season))
         return constants.cost_cap(season, race_count)
 
     def get_available_budget(self, season, other_costs):
         return self.get_cost_cap(season) - other_costs
+
+    def get_default_other_costs(self, season):
+        return round(self.get_cost_cap(season) - constants.DEFAULT_BUDGET_MLN, 2)
 
     def get_components(self):
         if not self._components:
@@ -62,7 +94,7 @@ class Model:
 
     def build_graph(self, season, development_start_date=None):
         self._graph.clear()
-        self._races = DAO.get_races(season)
+        self._races = self.get_season_races(season)
         self._source = None
 
         nodes = list(self._races)
@@ -89,6 +121,9 @@ class Model:
 
     def get_num_edges(self):
         return len(self._graph.edges)
+
+    def get_benefit_race_count(self, race):
+        return len(self._races) - self._races.index(race)
 
     def get_effective_lead_time(self, component, position):
         if component.focus != constants.ATR_FOCUS:
