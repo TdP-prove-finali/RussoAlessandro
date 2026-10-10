@@ -119,8 +119,9 @@ class View(ft.UserControl):
         scenario = self._section("Scenario", ft.Column([
             ft.Row([self.dd_pre_season, self.dd_pre_team, self.dd_pre_position, self.btn_pre_start_date],
                    wrap=True, vertical_alignment=ft.CrossAxisAlignment.CENTER),
-            ft.Row([self.txt_pre_other_costs, self.txt_pre_budget, ft.Container(width=24),
-                    self.txt_pre_tolerance, self.slider_pre_tolerance], wrap=True,
+            ft.Row([self.txt_pre_other_costs, self.txt_pre_budget], wrap=True,
+                   vertical_alignment=ft.CrossAxisAlignment.CENTER),
+            ft.Row([self.txt_pre_tolerance, self.slider_pre_tolerance],
                    vertical_alignment=ft.CrossAxisAlignment.CENTER)]))
 
         self.catalog_rows = {constants.AERO_FOCUS: ft.Row(spacing=10),
@@ -173,8 +174,9 @@ class View(ft.UserControl):
         scenario = self._section("Scenario", ft.Column([
             ft.Row([self.dd_in_season, self.dd_in_race, self.dd_in_team, self.dd_in_position],
                    wrap=True, vertical_alignment=ft.CrossAxisAlignment.CENTER),
-            ft.Row([self.dd_in_component, self.txt_in_other_costs, self.txt_in_budget, ft.Container(width=24),
-                    self.txt_in_tolerance, self.slider_in_tolerance], wrap=True,
+            ft.Row([self.dd_in_component, self.txt_in_other_costs, self.txt_in_budget], wrap=True,
+                   vertical_alignment=ft.CrossAxisAlignment.CENTER),
+            ft.Row([self.txt_in_tolerance, self.slider_in_tolerance],
                    vertical_alignment=ft.CrossAxisAlignment.CENTER)]))
 
         self.btn_in_optimize = ft.ElevatedButton(
