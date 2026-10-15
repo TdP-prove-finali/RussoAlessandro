@@ -35,7 +35,7 @@ CREATE TABLE `circuits` (
   `power_index` float DEFAULT NULL,
   `rain_prob` float DEFAULT NULL,
   PRIMARY KEY (`circuit_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `components` (
   `cost_mln` decimal(5,2) NOT NULL,
   `base_lead_time_days` int(11) NOT NULL,
   PRIMARY KEY (`component_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `constructors` (
   `first_season` int(11) NOT NULL,
   `last_season` int(11) DEFAULT NULL COMMENT 'NULL = ancora attiva',
   PRIMARY KEY (`constructor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,9 +126,9 @@ CREATE TABLE `races` (
   `url` varchar(255) DEFAULT NULL,
   `is_sprint` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`race_id`),
-  KEY `circuit_id` (`circuit_id`),
+  KEY `races_ibfk_1` (`circuit_id`),
   CONSTRAINT `races_ibfk_1` FOREIGN KEY (`circuit_id`) REFERENCES `circuits` (`circuit_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `routes` (
   CONSTRAINT `routes_ibfk_1` FOREIGN KEY (`constructor_id`) REFERENCES `constructors` (`constructor_id`),
   CONSTRAINT `routes_ibfk_2` FOREIGN KEY (`circuit_id`) REFERENCES `circuits` (`circuit_id`),
   CONSTRAINT `routes_mode_chk` CHECK (`transport_mode` in ('road','air'))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-04 16:56:36
+-- Dump completed on 2026-10-13 18:38:50
