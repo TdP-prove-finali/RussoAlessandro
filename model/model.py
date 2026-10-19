@@ -270,7 +270,8 @@ class Model:
         self._moves = {}
         for node in self._graph.nodes:
             reachable = [[r for r in self._graph.successors(node)
-                          if self._graph[node][r]["weight"] >= self._lead_times[t] + self._shipments[r].transit_days]
+                          if self._graph[node][r]["weight"] >= self._lead_times[t] + self._shipments[r].transit_days
+                          + constants.ARRIVAL_ADVANCE_DAYS]
                          for t in range(len(self._types))]
             self._reachable[node] = reachable
             self._max_reachable_value[node] = [max((self._values[t][r] for r in reachable[t]), default=None)
@@ -339,7 +340,8 @@ class Model:
             free_items.remove(item)
             shipment = self._shipments[race]
             item.debut_race = race
-            item.margin_days = self._graph[previous][race]["weight"] - self._lead_times[t] - shipment.transit_days
+            item.margin_days = (self._graph[previous][race]["weight"] - self._lead_times[t] - shipment.transit_days
+                                - constants.ARRIVAL_ADVANCE_DAYS)
             item.value = self._values[t][race]
             item.production_cost = item.component.cost_mln
             item.logistics_cost = shipment.logistics_cost
