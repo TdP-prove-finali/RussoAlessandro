@@ -16,7 +16,7 @@ class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
         self._page = page
-        self._page.title = "Applicazione per l'ottimizzazione logistica ed economica degli sviluppi vettura in Formula 1"
+        self._page.title = "Application for the logistic and economic optimisation of car upgrades in Formula 1"
         self._page.horizontal_alignment = 'CENTER'
         self._page.theme_mode = ft.ThemeMode.LIGHT
         self._page.bgcolor = ft.colors.GREY_100
