@@ -331,7 +331,7 @@ class View(ft.UserControl):
                  self._stat("V max (phase 1)", f"{result.max_value:.3f}",
                             f"phase 1 cost {result.phase1_cost:.2f} M$"),
                  self._stat("Performance price", f"{result.performance_price:.3f}", "M$ per unit of V"),
-                 self._stat("Savings vs phase 1", f"{-savings:+.2f} M$" if savings > constants.EPSILON
+                 self._stat("Savings vs phase 1", f"{savings:.2f} M$" if savings > constants.EPSILON
                             else "0.00 M$",
                             f"giving up {result.get_performance_loss_pct():.2f}% of performance"),
                  self._stat("Overall ROI", f"{result.get_roi():.2f}", "V per M$"),

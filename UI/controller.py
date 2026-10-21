@@ -281,9 +281,12 @@ class Controller:
             race = item.debut_race
             affinity = self._model.get_affinity(item.component, race) * 10
             weekend = "sprint weekend" if race.is_sprint else "standard weekend"
+            benefit_races = self._model.get_benefit_race_count(race)
+            day_word = "day" if item.margin_days == 1 else "days"
+            race_word = "race" if benefit_races == 1 else "races"
             motivations[item.item_id] = (
                 f"{item.component.focus} affinity {affinity:g}/10 at {race.circuit_name}; {weekend}, "
                 f"rain probability {race.rain_prob * 100:.0f}% (debut quality "
-                f"{self._model.get_debut_quality(race):.2f}); margin {item.margin_days} days; "
-                f"benefit on {self._model.get_benefit_race_count(race)} races.")
+                f"{self._model.get_debut_quality(race):.2f}); margin {item.margin_days} {day_word}; "
+                f"benefit on {benefit_races} {race_word}.")
         return motivations
