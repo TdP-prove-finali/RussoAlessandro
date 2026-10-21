@@ -20,7 +20,7 @@ Alessandro Russo
 - Package costs, gains and lead times, circuit indices, rain probabilities and routes are in the database, not in `constants.py`
 - The results reported in the thesis were obtained with the delivered values: changing the constants changes the results
 
-The video showing how to use the software is available at the following YouTube link: [link to be added]
+The video showing how to use the software is available at the following YouTube link: https://youtu.be/n1bTftE29iw
 
 ## Data and licences
 

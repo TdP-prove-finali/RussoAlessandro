@@ -20,7 +20,7 @@ Alessandro Russo
 - Costi, guadagni e lead time dei pacchetti, indici dei circuiti, probabilità di pioggia e tratte sono nel database, non in `constants.py`
 - I risultati riportati nella relazione sono ottenuti con i valori consegnati: modificare le costanti cambia i risultati
 
-Il video di dimostrazione di utilizzo del software è disponibile al seguente link di YouTube: [link da inserire]
+Il video di dimostrazione di utilizzo del software è disponibile al seguente link di YouTube: https://youtu.be/n1bTftE29iw
 
 ## Dati e licenze
 
